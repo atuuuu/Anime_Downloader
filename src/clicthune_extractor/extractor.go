@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 	"regexp"
-	"strconv"
 	"strings"
 	"time"
 )
@@ -66,7 +65,7 @@ func getRequestContent(clictuneURL string) ([]byte, error) {
 		return nil, err
 	}
 
-	//req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0")
 
 	resp, err := client.Do(req)
 	if err != nil {
@@ -78,13 +77,13 @@ func getRequestContent(clictuneURL string) ([]byte, error) {
 	var retour = make([]byte, 10000)
 
 	for {
-		n, err := resp.Body.Read(retour)
+		_, err := resp.Body.Read(retour)
 		if err == io.EOF {
 			break
 		}
 
-		fmt.Print("Lu : " + strconv.Itoa(n) + "\n\n")
-		fmt.Println(string(retour))
+		//fmt.Print("Lu : " + strconv.Itoa(n) + "\n\n")
+		//fmt.Println(string(retour))
 		for i := 0; i < len(tmp); i++ {
 			retour = append(retour, tmp[i])
 		}

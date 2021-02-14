@@ -53,9 +53,6 @@ func InitDownload(url string, file string, w *astilectron.Window, del int) {
 
 		err = fmt.Errorf("init")
 		for err != nil && lien != "" && j < 15 {
-			fmt.Println("detection...")
-			fmt.Println("lien : " + lien)
-
 			err = nil
 			download, err = detectServiceProvider(lien)
 			if err != nil {
