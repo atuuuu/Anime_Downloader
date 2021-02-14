@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"github.com/asticode/go-astilectron"
 	"log"
-	"net/http"
 	"regexp"
 	"strconv"
 	"streamtape_downloader"
@@ -14,34 +13,14 @@ import (
 )
 
 func detectServiceProvider(url string) (func(string, string, chan error, *astilectron.Window, int) error, error) {
-	req, err := http.Get(url)
-	if err != nil {
-		log.Println("main.go:31 " + err.Error())
-		return nil, err
-	}
-
-	var tmp = make([]byte, 50000)
-
-	_, err = req.Body.Read(tmp)
-	if err != nil {
-		log.Println(err.Error())
-		return nil, err
-	}
-
 	doodR := regexp.MustCompile(".*dood.*")
 	streamTapeR := regexp.MustCompile(".*streamtape.*")
-	googleR := regexp.MustCompile(".*google.*")
 
-	if streamTapeR.MatchString(string(tmp)) {
+	if streamTapeR.MatchString(url) {
 		return streamtape_downloader.Streamtape_download, nil
 	}
-	if doodR.Match(tmp) {
-		fmt.Println("dood")
+	if doodR.MatchString(url) {
 		return doods_downloader.Dood_download, nil
-	}
-	if googleR.Match(tmp) {
-		fmt.Println("google")
-		return nil, fmt.Errorf("les liens google drive ne sont pas supportés")
 	}
 
 	return nil, fmt.Errorf("support non pris en charge")
@@ -58,8 +37,6 @@ func InitDownload(url string, file string, w *astilectron.Window, del int) {
 
 	for l < 5 {
 		for err != nil && i < 15 {
-			fmt.Println("Clictune ?")
-
 			err = nil
 			lien, err = clicthune_extractor.Clicthune(url)
 			if err != nil {
@@ -77,6 +54,7 @@ func InitDownload(url string, file string, w *astilectron.Window, del int) {
 		err = fmt.Errorf("init")
 		for err != nil && lien != "" && j < 15 {
 			fmt.Println("detection...")
+			fmt.Println("lien : " + lien)
 
 			err = nil
 			download, err = detectServiceProvider(lien)

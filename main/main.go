@@ -26,8 +26,6 @@ func main() {
 	if err := bootstrap.Run(v.App); err != nil {
 		v.L.Fatal(fmt.Errorf("running bootstrap failed: %w", err))
 	}
-
-	//initDownload("https://www.clictune.com/9SD3", "test/file"+strconv.Itoa(35)+".mp4")
 }
 
 func buildAppPage() error {

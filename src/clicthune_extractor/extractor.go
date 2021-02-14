@@ -2,9 +2,11 @@ package clicthune_extractor
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -36,7 +38,7 @@ func getVidURL(clictuneURL string) (string, error) {
 func extractURL(site []byte) (string, error) {
 	var retour string
 
-	r := regexp.MustCompile("txt = '<b><a href=\".*\">")
+	r := regexp.MustCompile("<a href=\"https:\\/\\/www.mylink..*\">")
 	match := r.Find(site)
 	candidate := strings.Split(string(match), "\"")
 
@@ -64,22 +66,29 @@ func getRequestContent(clictuneURL string) ([]byte, error) {
 		return nil, err
 	}
 
-	req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0")
+	//req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0")
 
 	resp, err := client.Do(req)
 	if err != nil {
 		log.Print(err.Error())
 		return nil, err
 	}
-	for resp.StatusCode == 202 {
+
+	var tmp = make([]byte, 10000)
+	var retour = make([]byte, 10000)
+
+	for {
+		n, err := resp.Body.Read(retour)
+		if err == io.EOF {
+			break
+		}
+
+		fmt.Print("Lu : " + strconv.Itoa(n) + "\n\n")
+		fmt.Println(string(retour))
+		for i := 0; i < len(tmp); i++ {
+			retour = append(retour, tmp[i])
+		}
 	}
-
-	var retour = make([]byte, 15000)
-
-	_, err = resp.Body.Read(retour)
-
-	//fmt.Print("Lu : " + strconv.Itoa(n) + "\n\n")
-	//fmt.Println(string(retour))
 
 	return retour, nil
 }
