@@ -1,13 +1,13 @@
 package main
 
 import (
+	v "./view"
 	"fmt"
 	_ "github.com/asticode/go-astikit"
 	_ "github.com/asticode/go-astilectron"
 	bootstrap "github.com/asticode/go-astilectron-bootstrap"
 	"log"
 	"os"
-	v "view"
 )
 
 // Vars injected via ldflags by bundler

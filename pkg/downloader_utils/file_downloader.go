@@ -1,14 +1,14 @@
 package downloader_utils
 
 import (
-	"clicthune_extractor"
-	"doods_downloader"
+	"../clicthune_extractor"
+	"../doods_downloader"
+	"../streamtape_downloader"
 	"fmt"
 	"github.com/asticode/go-astilectron"
 	"log"
 	"regexp"
 	"strconv"
-	"streamtape_downloader"
 	"strings"
 )
 

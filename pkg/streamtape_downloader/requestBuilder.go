@@ -1,7 +1,7 @@
 package streamtape_downloader
 
 import (
-	"authentication"
+	"../authentication"
 	"encoding/json"
 	"fmt"
 	"log"

@@ -1,7 +1,8 @@
 <h1>"# Anime_Downloader"</h1>
 <br/>
-<h3> Conditions d'utilisatiton </h3>
-<p>En utilisant ce logiciel vous vous engagez à ne pas télécharger ou visionner illégalement des contenus que vous ne possédez pas.</p>
-<p>En aucun cas le développeur ne sera responsable de la mauvaise utilisation de cet outil</p>
+<h3> Terms of use </h3>
+<p>You agree not downloading or viewing video content you do not own</p>
+<p>I am not responsible of the usage made of this tool</p>
 <h3>Notes</h3>
-<p>Cet outil existe uniquement dans le but de m'amuser et contribue à mes entretiens d'embauche en enrichissant mon github</p>
+<p>This tool was made for fun, it is not serious, it might not be maintained</p>
+<p>This is my very first Go project, do not expect something clean (but I'm currently doing my best to improve it)</p>

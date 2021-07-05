@@ -1,7 +1,7 @@
 package view
 
 import (
-	"downloader_utils"
+	"../downloader_utils"
 	"fmt"
 	"github.com/asticode/go-astikit"
 	"github.com/asticode/go-astilectron"
@@ -203,7 +203,7 @@ var SourceHTML = `<!doctype html>
 	</div>
 </body>
 
-    <script src="index.js"></script>
+    <script pkg="index.js"></script>
 
 </html>`
 
