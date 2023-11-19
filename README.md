@@ -1,5 +1,6 @@
-<h1>"# Anime_Downloader"</h1>
+<h1>Anime_Downloader</h1>
 <br/>
+<h1>UNMAINTAINED</h1>
 <h3> Terms of use </h3>
 <p>You agree not downloading or viewing video content you do not own</p>
 <p>I am not responsible of the usage made of this tool</p>
